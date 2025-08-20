@@ -4,7 +4,8 @@ import Tokenizer
 import java.io.Serializable
 import java.util.*
 
-class InvertedIndex() : Serializable {
+object InvertedIndex: Serializable {
+    private fun readResolve(): Any = InvertedIndex
     private val index: MutableMap<String, HashSet<Int>> = HashMap()
 
     fun buildIndex(documents: List<Document>){
@@ -16,7 +17,6 @@ class InvertedIndex() : Serializable {
                 index.getOrPut(token) { hashSetOf() }.add(doc.id)
             }
         }
-
     }
 
     fun search(){

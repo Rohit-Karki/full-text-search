@@ -16,7 +16,7 @@ data class Document @OptIn(ExperimentalSerializationApi::class) constructor(
 )
 
 object DocumentStore {
-    private lateinit var documents: List<Document>
+    lateinit var documents: List<Document>
 
     @OptIn(ExperimentalSerializationApi::class)
     fun loadDocument(directoryPath: String) {

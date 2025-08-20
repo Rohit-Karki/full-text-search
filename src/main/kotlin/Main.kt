@@ -1,7 +1,32 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import index.DocumentStore
+import index.InvertedIndex
+import java.io.File
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    // Check if a directory path was provided as a command-line argument
+    if (args.isEmpty()) {
+        println("Usage: java -jar YourSearchEngine.jar <directory_path>")
+        return
+    }
+
+    val directoryPath = args[0]
+    val directory = File(directoryPath)
+
+    if (!directory.exists() || !directory.isDirectory) {
+        println("Error: The provided path is not a valid directory.")
+        return
+    }
+
+    val documentStore = DocumentStore
+    documentStore.loadDocument(directoryPath)
+
+    if (documentStore.documents.isEmpty()) {
+        println("No documents found in the specified directory.")
+        return
+    }
+
+    val invertedIndex = InvertedIndex
+    invertedIndex.buildIndex(documentStore.documents)
+    println("Indexing complete. Indexed ${documentStore.documents.size} documents.")
+
 }
