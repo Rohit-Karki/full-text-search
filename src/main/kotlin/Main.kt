@@ -4,12 +4,12 @@ import java.io.File
 
 fun main(args: Array<String>) {
     // Check if a directory path was provided as a command-line argument
-    if (args.isEmpty()) {
+    /*if (args.isEmpty()) {
         println("Usage: java -jar YourSearchEngine.jar <directory_path>")
         return
-    }
+    }*/
 
-    val directoryPath = args[0]
+    val directoryPath = "C:\\Users\\rohit\\Downloads\\enwiki-latest-abstract1"
     val directory = File(directoryPath)
 
     if (!directory.exists() || !directory.isDirectory) {
@@ -29,4 +29,5 @@ fun main(args: Array<String>) {
     invertedIndex.buildIndex(documentStore.documents)
     println("Indexing complete. Indexed ${documentStore.documents.size} documents.")
 
+    println("documentStore 112 is ${documentStore.documents[112]}")
 }
