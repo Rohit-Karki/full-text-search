@@ -3,6 +3,7 @@ package index
 import Tokenizer
 import java.io.Serializable
 import java.util.*
+import kotlin.collections.HashSet
 
 object InvertedIndex: Serializable {
     private fun readResolve(): Any = InvertedIndex
@@ -13,23 +14,16 @@ object InvertedIndex: Serializable {
         documents.forEach { doc ->
             // Use the tokenizer to get clean tokens
             val tokens = tokenizer.tokenize(doc.abstractText!!).toSet()
-            if (doc.id < 2){
-                println(tokens)
-            }
             tokens.forEach { token ->
                 index.getOrPut(token) { hashSetOf() }.add(doc.id)
-            }
-            if (doc.id < 2){
-                println(index)
             }
         }
     }
 
-    fun search(queryText: String): IndexedDocument {
+    fun search(queryText: String): Serializable {
         val transformedQuery = queryText.lowercase()
         println(transformedQuery)
-        val documentId = index.getOrDefault(transformedQuery, 1)
-        println(documentId)
-        return DocumentStore.documents[documentId as Int]
+
+        return index.getOrDefault(transformedQuery, 1)
     }
 }
