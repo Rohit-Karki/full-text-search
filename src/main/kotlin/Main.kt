@@ -28,6 +28,6 @@ fun main(args: Array<String>) {
     val invertedIndex = InvertedIndex
     invertedIndex.buildIndex(documentStore.documents)
     println("Indexing complete. Indexed ${documentStore.documents.size} documents.")
-
-    println("documentStore 112 is ${documentStore.documents[112]}")
+    
+    println("search result is ${invertedIndex.search("Anarchism")}")
 }
