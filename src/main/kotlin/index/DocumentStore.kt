@@ -66,7 +66,7 @@ object DocumentStore {
 
     fun loadDocument(directoryPath: String) {
         /*
-        * Load the document from the XML, parse it and save it as List<Document>
+        * Load the document from the XML, parse it and save it as List<IndexedDocument>
         * */
         val directory = File(directoryPath)
         val documentList = mutableListOf<IndexedDocument>()

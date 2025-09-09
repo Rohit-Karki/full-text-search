@@ -1,12 +1,10 @@
 package index
 
 import Tokenizer
-import java.io.Serializable
 import java.util.*
 import kotlin.collections.HashSet
 
-object InvertedIndex: Serializable {
-    private fun readResolve(): Any = InvertedIndex
+object InvertedIndex {
     private val index: MutableMap<String, HashSet<Int>> = HashMap()
 
     fun buildIndex(documents: List<IndexedDocument>){
@@ -20,10 +18,13 @@ object InvertedIndex: Serializable {
         }
     }
 
-    fun search(queryText: String): Serializable {
+    fun search(queryText: String): List<HashSet<Int>> {
         val transformedQuery = queryText.lowercase()
-        println(transformedQuery)
-
-        return index.getOrDefault(transformedQuery, 1)
+        val tokens = Tokenizer.tokenize(transformedQuery)
+        val matchedDocuments = mutableListOf<HashSet<Int>>()
+        for (token in tokens){
+            matchedDocuments.add(index[token]!!)
+        }
+        return matchedDocuments
     }
 }
