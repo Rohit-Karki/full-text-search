@@ -1,6 +1,6 @@
 object StopWords {
     // Source: https://gist.github.com/sebleier/554280?permalink_comment_id=2838826#gistcomment-2838826
-    private val words: HashSet<String?> = hashSetOf(
+    private val words: HashSet<String> = hashSetOf(
         "a",
         "about",
         "above",

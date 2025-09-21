@@ -6,7 +6,8 @@ object Tokenizer {
             .split(Regex("\\s+")) // Split by whitespace
 
         // Step 2 & 3: Filter out empty strings
-        val filteredEmptyString = rawTokens.filter { it.isNotBlank() }
-        return StopWords.removeStopWords(filteredEmptyString)
+        val listafterfilteredEmptyString = rawTokens.filter { it.isNotBlank() }
+        // Remove stop words from the list
+        return StopWords.removeStopWords(listafterfilteredEmptyString)
     }
 }
