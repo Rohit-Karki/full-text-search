@@ -1,4 +1,5 @@
-# Text Search
+# Full Text Search
+An Elasticsearch-like mini inverted index.
 
 A simple Kotlin-based text search engine that indexes XML documents and supports keyword search using an inverted index.
 
@@ -8,24 +9,6 @@ A simple Kotlin-based text search engine that indexes XML documents and supports
 - Removes stop words and tokenizes text for efficient indexing.
 - Builds an inverted index for fast keyword search.
 - Command-line interface for indexing and searching.
-
-## Project Structure
-
-```
-src/
-  main/
-    kotlin/
-      Main.kt
-      Tokenizer.kt
-      StopWords.kt
-      index/
-        DocumentStore.kt
-        InvertedIndex.kt
-        IndexInformation.kt
-  test/
-build.gradle.kts
-settings.gradle.kts
-```
 
 ## Getting Started
 

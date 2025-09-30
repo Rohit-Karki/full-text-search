@@ -1,3 +1,6 @@
+/** Tokenizes a string into an array of tokens. For example, the string "Hello, world!" would be tokenized into
+ * ["Hello", "world"].
+ */
 object Tokenizer {
     fun tokenize(text: String): List<String> {
         // Step 1: Normalize and split the text
