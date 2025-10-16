@@ -29,13 +29,35 @@ object InvertedIndex {
         val tokens = Tokenizer.tokenize(transformedQuery)
         val matchedDocuments = mutableListOf<HashSet<Int>>()
         for (token in tokens){
-            matchedDocuments.add(index[token]!!)
+            val docIds = index[token]
+            if (docIds != null) {
+                matchedDocuments.add(docIds)
+            }
         }
         return matchedDocuments
     }
 
     fun size(): Int {
         return index.size
+    }
+    
+    fun saveToDisk(filePath: String = "search_index.json") {
+        IndexPersistence.saveIndex(index, filePath)
+    }
+    
+    fun loadFromDisk(filePath: String = "search_index.json"): Boolean {
+        val loadedIndex = IndexPersistence.loadIndex(filePath)
+        return if (loadedIndex != null) {
+            index.clear()
+            index.putAll(loadedIndex)
+            true
+        } else {
+            false
+        }
+    }
+    
+    fun clear() {
+        index.clear()
     }
 
 }
